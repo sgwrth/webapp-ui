@@ -1,0 +1,30 @@
+<div *ngIf="loginSuccessful; else login">
+    <h1>AWS employees</h1>
+    <h2>app.component</h2>
+    <app-employee-list></app-employee-list>
+</div>
+
+<ng-template #login>
+    <div>
+        <h2>Please log in:</h2>
+        <div>
+            <label for="username">username:</label>
+            <input type="text" id="username" [(ngModel)]="username"
+                    (ngModelChange)="killError()">
+        </div>
+        <div>
+            <label for="password">password:</label>
+            <input type="text" id="password" [(ngModel)]="password"
+                    (ngModelChange)="killError()">
+        </div>
+        <div>
+            <button type="button" (click)="checkCredentials()">LOG IN</button>
+        </div>
+    </div>
+    <div *ngIf="passwordIncorrect">
+        Error: password incorrect!
+    </div>
+    <div *ngIf="userUnknown">
+        Error: user not found!
+    </div>
+</ng-template>
