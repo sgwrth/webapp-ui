@@ -1,0 +1,11 @@
+<div>
+    <h2>employee-list.component</h2>
+    <div>
+        <table>
+            <tr *ngFor="let employee of employees">
+                <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+                <td><button type="button">EDIT</button></td>
+            </tr>
+        </table>
+    </div>
+</div>

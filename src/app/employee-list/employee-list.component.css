@@ -1,0 +1,12 @@
+div {
+    background-color: #303030;
+}
+
+table {
+    border-collapse: collapse;
+    border: solid 1px;
+}
+
+td {
+    border: solid 1px;
+}
