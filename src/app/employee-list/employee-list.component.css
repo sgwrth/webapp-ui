@@ -1,5 +1,6 @@
 div {
     background-color: #303030;
+    color: #ffffff;
 }
 
 table {
@@ -8,5 +9,6 @@ table {
 }
 
 td {
-    border: solid 1px;
+    border: solid 1px #909090;
+    padding: 4px;
 }

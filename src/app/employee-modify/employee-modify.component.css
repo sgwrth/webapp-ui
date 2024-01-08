@@ -1,5 +1,10 @@
 div {
-    background-color: #606060;
+    background-color: #505050;
+}
+
+label {
+    display: inline-block;
+    width: 5rem;
 }
 
 table {

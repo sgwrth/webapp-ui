@@ -12,4 +12,11 @@ export class EmployeeService {
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(`${this.baseUrl}/all`)
   }
+  updateEmployee(employee: Employee): Observable<Employee> {
+    return this.http.put<Employee>(`${this.baseUrl}`, {
+      employeeId: employee.employeeId,
+      firstName: employee.firstName,
+      lastName: employee.lastName
+    })
+  }
 }

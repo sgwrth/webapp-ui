@@ -1,3 +1,22 @@
-<div *ngIf="employeesToBeModified.length">
+<div *ngIf="employeeToBeModified.length">
     <h2>employee-modify.component</h2>
+    <div *ngFor="let empl of employeeToBeModified">
+        <form #employeeForm (ngSubmit)="modifyEmployee(empl)">
+            <div>
+                <div>
+                    <label for="firstName">First name: </label>
+                    <input id="firstName" [(ngModel)]="empl.firstName"
+                            name="firstName">
+                </div>
+                <div>
+                    <label for="lastName">Last name: </label>
+                    <input id="lastName" [(ngModel)]="empl.lastName"
+                            name="lastName">
+                </div>
+                <div>
+                    <button type="submit">SUBMIT</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

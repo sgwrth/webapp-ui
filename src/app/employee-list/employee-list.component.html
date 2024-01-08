@@ -4,8 +4,12 @@
         <table>
             <tr *ngFor="let employee of employees">
                 <td>{{ employee.firstName }} {{ employee.lastName }}</td>
-                <td><button type="button">EDIT</button></td>
+                <td><button type="button"
+                        (click)="selectEmployeeForModification(employee)">EDIT</button></td>
             </tr>
         </table>
     </div>
+</div>
+<div>
+    <app-employee-modify [employeeToBeModified]="employeeSelectedForModification"></app-employee-modify>
 </div>
