@@ -1,19 +1,19 @@
-<div *ngIf="employeeToBeModified.length">
-  <h2>employee-modify.component</h2>
-  <div *ngFor="let empl of employeeToBeModified">
-    <form #employeeForm (ngSubmit)="modifyEmployee(empl)">
+<div *ngIf="showAddEmployee">
+  <h2>employee-add.component</h2>
+  <div>
+    <form #employeeForm (ngSubmit)="addEmployee(employee)">
     <div>
       <div>
         <label for="firstName">First name: </label>
         <mat-form-field>
-          <input matInput id="firstName" [(ngModel)]="empl.firstName"
+          <input matInput id="firstName" [(ngModel)]="employee.firstName"
               name="firstName">
         </mat-form-field>
       </div>
       <div>
         <label for="lastName">Last name: </label>
         <mat-form-field>
-          <input matInput id="lastName" [(ngModel)]="empl.lastName"
+          <input matInput id="lastName" [(ngModel)]="employee.lastName"
               name="lastName">
         </mat-form-field>
       </div>

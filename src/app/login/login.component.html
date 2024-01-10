@@ -1,30 +1,37 @@
 <div *ngIf="loginSuccessful; else login">
-    <h1>AWS employees</h1>
-    <h2>app.component</h2>
-    <app-employee-list></app-employee-list>
+  <h1>Employees</h1>
+  <app-employee-list></app-employee-list>
 </div>
 
 <ng-template #login>
+  <div>
+    <h2>Please log in:</h2>
     <div>
-        <h2>Please log in:</h2>
-        <div>
-            <label for="username">username:</label>
-            <input type="text" id="username" [(ngModel)]="username"
-                    (ngModelChange)="killError()">
-        </div>
-        <div>
-            <label for="password">password:</label>
-            <input type="password" id="password" [(ngModel)]="password"
-                    (ngModelChange)="killError()">
-        </div>
-        <div>
-            <button type="button" (click)="checkCredentials()">LOG IN</button>
-        </div>
+      <label for="username">username:</label>
+      <mat-form-field>
+        <input matInput type="text" id="username" [(ngModel)]="username"
+            (ngModelChange)="killError()">
+      </mat-form-field>
     </div>
-    <div *ngIf="passwordIncorrect">
-        Error: password incorrect!
+    <div>
+      <label for="password">password:</label>
+      <mat-form-field>
+        <input matInput type="password" id="password" [(ngModel)]="password"
+            (ngModelChange)="killError()">
+      </mat-form-field>
     </div>
-    <div *ngIf="userUnknown">
-        Error: user not found!
+    <div>
+      <button mat-raised-button type="submit"
+          (click)="checkCredentials()">LOG IN</button>
     </div>
+  </div>
+  <div *ngIf="waiting">
+      <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="passwordIncorrect">
+      Error: password incorrect!
+  </div>
+  <div *ngIf="userUnknown">
+      Error: user not found!
+  </div>
 </ng-template>

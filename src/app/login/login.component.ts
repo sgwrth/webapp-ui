@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CheckUserService } from '../shared/check-user.service';
 import { tap } from 'rxjs';
 
@@ -14,9 +14,11 @@ export class LoginComponent {
   loginSuccessful: boolean = false
   passwordIncorrect: boolean = false
   userUnknown: boolean = false
+  waiting: boolean = false
   username: string = ''
   password: string = ''
   checkCredentials(): void {
+    this.waiting = true
     this.checkUser.checkCreds({
       "username": this.username,
       "password": this.password
@@ -25,16 +27,19 @@ export class LoginComponent {
         if (result == 'login successful!') {
           console.log('login successful!')
           this.loginSuccessful = true
+          this.waiting = false
         }
         if (result == 'password incorrect') {
           console.log('password incorrect')
           this.userUnknown = false
           this.passwordIncorrect = true
+          this.waiting = false
         }
         if (result == 'user not found') {
           console.log('user not found')
           this.userUnknown = true
           this.passwordIncorrect = false
+          this.waiting = false
         }
       })
     ).subscribe()

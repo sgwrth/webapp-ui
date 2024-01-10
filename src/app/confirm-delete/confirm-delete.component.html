@@ -1,0 +1,5 @@
+<div *ngIf="employeeToDelete.length">
+  <div *ngFor="let employee of employeeToDelete">
+    <button type="button" (click)="deleteForGood(employee)">confirm delete</button>
+  </div>
+</div> 

@@ -7,19 +7,33 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmployeeModifyComponent } from './employee-modify/employee-modify.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { EmployeeAddComponent } from './employee-add/employee-add.component';
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EmployeeListComponent,
     EmployeeModifyComponent,
-    LoginComponent
+    LoginComponent,
+    EmployeeAddComponent,
+    ConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatTableModule, 
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
