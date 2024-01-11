@@ -12,15 +12,12 @@ export class ConfirmDeleteComponent {
   isEmployeeSelectedForDeletion: boolean = false
   @Input() employeeToDelete: Employee[] = []
   @Output() removeEmployee = new EventEmitter<Employee>();
-  // deleteForGood(employee: Employee): void {
-    // this.confirmDelete.emit(employee)
-    // this.isEmployeeSelectedForDeletion = false
-  // }
   deleteForGood(employee: Employee): void {
     this.emplServ.deleteEmployee(employee)
         .subscribe()
     for (let empl of this.employeeToDelete) {
       this.removeEmployee.emit(empl)
     }
+    this.employeeToDelete.pop()
   }
 }

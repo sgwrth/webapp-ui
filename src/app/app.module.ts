@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
     MatProgressSpinnerModule,
     MatButtonModule,
     MatTableModule, 
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
