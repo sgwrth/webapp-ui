@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Employee } from '../shared/employee';
 import { EmployeeService } from '../shared/employee.service';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 
 @Component({
@@ -12,18 +12,18 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 export class ConfirmDeleteComponent {
   constructor(
       private emplServ: EmployeeService,
-      private dialog: MatDialog,
+      private dialog: MatDialogRef<ConfirmDeleteComponent>,
       @Inject(MAT_DIALOG_DATA) public data: Employee
   ) {}
   isEmployeeSelectedForDeletion: boolean = false
   @Input() employeeToDelete: Employee[] = []
   @Output() removeEmployee = new EventEmitter<Employee>();
+  handoverEmployee(employee: Employee): void {
+    this.dialog.close(employee)
+  }
   deleteForGood(employee: Employee): void {
     this.emplServ.deleteEmployee(employee)
         .subscribe()
-    for (let empl of this.employeeToDelete) {
-      this.removeEmployee.emit(empl)
-    }
-    this.employeeToDelete.pop()
+    this.handoverEmployee(employee)
   }
 }

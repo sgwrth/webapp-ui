@@ -23,9 +23,13 @@ export class EmployeeListComponent implements OnInit {
       private emplServ: EmployeeService,
       private dialogConfirm: DialogService
     ) {}
-  
   openConfirm(employee: Employee): void {
-    this.dialogConfirm.openDialog(employee)
+    const dialogRef = this.dialogConfirm.dialog.open(ConfirmDeleteComponent, {
+      data: employee
+    })
+    dialogRef.afterClosed().subscribe((result) => {
+      this.removeEmployeeFromList(result)
+    })
   }
   selectEmployeeForModification(employee: Employee): void {
     while (this.employeeSelectedForModification.length) {

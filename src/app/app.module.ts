@@ -15,6 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { PopupConfirmDeleteComponent } from './popup-confirm-delete/popup-confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
     EmployeeModifyComponent,
     LoginComponent,
     EmployeeAddComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    PopupConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,

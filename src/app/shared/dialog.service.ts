@@ -9,12 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class DialogService {
   constructor(
-      private dialog: MatDialog
+      public dialog: MatDialog
   ) {}
-  openDialog(employee: Employee): Observable<any> {
-    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-      data: employee
-    })
-    return dialogRef.afterClosed()
-  }
+  // openDialog(employee: Employee) {
+  //   const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+  //     data: employee
+  //   })
+  //   const sub = dialogRef.componentInstance.removeEmployee.subscribe()
+  //   dialogRef.afterClosed().subscribe();
+  // }
 }
