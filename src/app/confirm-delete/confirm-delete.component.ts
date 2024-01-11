@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Employee } from '../shared/employee';
 import { EmployeeService } from '../shared/employee.service';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-confirm-delete',
@@ -8,7 +10,11 @@ import { EmployeeService } from '../shared/employee.service';
   styleUrl: './confirm-delete.component.css'
 })
 export class ConfirmDeleteComponent {
-  constructor(private emplServ: EmployeeService) {}
+  constructor(
+      private emplServ: EmployeeService,
+      private dialog: MatDialog,
+      @Inject(MAT_DIALOG_DATA) public data: Employee
+  ) {}
   isEmployeeSelectedForDeletion: boolean = false
   @Input() employeeToDelete: Employee[] = []
   @Output() removeEmployee = new EventEmitter<Employee>();

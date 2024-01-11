@@ -1,6 +1,17 @@
-<div *ngIf="employeeToDelete.length">
+<!-- <div *ngIf="employeeToDelete.length">
   <div *ngFor="let employee of employeeToDelete">
     <button mat-raised-button class="m-top-bottom" color="warn"
         (click)="deleteForGood(employee)">CONFIRM DELETE</button>
   </div>
-</div> 
+</div> -->
+<h1 mat-dialog-title>Confirm delete</h1>
+<mat-dialog-content>
+  <!-- <div *ngFor="let employee of employeeForDeletion"> -->
+    {{ data.firstName }} {{ data.lastName }}
+    <button mat-raised-button mat-dialog-close class="m-top-bottom" color="warn"
+        (click)="deleteForGood(data)">CONFIRM DELETE</button>
+  <!-- </div> -->
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>CLOSE</button>
+</mat-dialog-actions>

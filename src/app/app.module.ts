@@ -14,7 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { Employee } from '../shared/employee';
 import { MatTable } from '@angular/material/table';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
+import { DialogService } from '../shared/dialog.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -18,8 +20,13 @@ export class EmployeeListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'edit', 'fire']
   @ViewChild(MatTable) table?: MatTable<any>
   constructor(
-      private emplServ: EmployeeService
+      private emplServ: EmployeeService,
+      private dialogConfirm: DialogService
     ) {}
+  
+  openConfirm(employee: Employee): void {
+    this.dialogConfirm.openDialog(employee)
+  }
   selectEmployeeForModification(employee: Employee): void {
     while (this.employeeSelectedForModification.length) {
       this.employeeSelectedForModification.pop()
@@ -42,6 +49,7 @@ export class EmployeeListComponent implements OnInit {
     }
     this.employeeSelectedForDeletion.push(employee)
     this.table?.renderRows()
+    this.openConfirm(employee)
   }
   removeEmployeeFromList(employee: Employee): void {
     for (let empl of this.employees) {
