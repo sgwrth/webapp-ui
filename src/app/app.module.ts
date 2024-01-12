@@ -18,6 +18,9 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { PopupConfirmDeleteComponent } from './popup-confirm-delete/popup-confirm-delete.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ErrorNotFoundComponent } from './error-not-found/error-not-found.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { ErrorNotFoundComponent } from './error-not-found/error-not-found.compon
     ConfirmDeleteComponent,
     PopupConfirmDeleteComponent,
     EmployeeDetailsComponent,
-    ErrorNotFoundComponent
+    ErrorNotFoundComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import { ErrorNotFoundComponent } from './error-not-found/error-not-found.compon
     MatButtonModule,
     MatTableModule, 
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },

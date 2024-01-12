@@ -1,9 +1,4 @@
-<div *ngIf="loginSuccessful; else login">
-  <h1>Employees</h1>
-  <app-employee-list></app-employee-list>
-</div>
-
-<ng-template #login>
+<div *ngIf="!loginSuccessful">
   <div>
     <h2>Please log in:</h2>
     <div>
@@ -34,4 +29,18 @@
   <div *ngIf="userUnknown">
       Error: user not found!
   </div>
-</ng-template>
+</div>
+
+<div *ngIf="loginSuccessful">
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #appMenu="matMenu">
+    <button mat-menu-item routerLink="/welcome">Welcome</button>
+    <button mat-menu-item routerLink="/employees">Employees</button>
+  </mat-menu>
+</div>
+
+<div *ngIf="loginSuccessful">
+  <router-outlet></router-outlet>
+</div>
