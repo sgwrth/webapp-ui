@@ -2,6 +2,7 @@
 
 # andreas
 *.tar.gz
+*.sh
 
 # Compiled output
 /dist

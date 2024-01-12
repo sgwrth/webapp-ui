@@ -16,6 +16,8 @@ import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { PopupConfirmDeleteComponent } from './popup-confirm-delete/popup-confirm-delete.component';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { ErrorNotFoundComponent } from './error-not-found/error-not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PopupConfirmDeleteComponent } from './popup-confirm-delete/popup-confir
     LoginComponent,
     EmployeeAddComponent,
     ConfirmDeleteComponent,
-    PopupConfirmDeleteComponent
+    PopupConfirmDeleteComponent,
+    EmployeeDetailsComponent,
+    ErrorNotFoundComponent
   ],
   imports: [
     BrowserModule,
