@@ -23,11 +23,8 @@
   <div *ngIf="waiting">
       <mat-spinner></mat-spinner>
   </div>
-  <div *ngIf="passwordIncorrect">
-      Error: password incorrect!
-  </div>
-  <div *ngIf="userUnknown">
-      Error: user not found!
+  <div *ngIf="true == isCredentialsIncorrect">
+      username and/or password incorrect
   </div>
 </div>
 

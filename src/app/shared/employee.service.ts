@@ -9,13 +9,13 @@ import { v4 as uuidv4 } from 'uuid';
   providedIn: 'root'
 })
 export class EmployeeService {
-  baseUrl = 'https://cmkxvlaa86.execute-api.eu-central-1.amazonaws.com/dev/employee'
+  baseUrl = 'http://localhost:8080/employees'
   constructor(private http: HttpClient) { }
   getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.baseUrl}/all`)
+    return this.http.get<Employee[]>(this.baseUrl)
   }
   updateEmployee(employee: Employee): Observable<Employee> {
-    return this.http.put<Employee>(`${this.baseUrl}`, {
+    return this.http.put<Employee>(this.baseUrl, {
       employeeId: employee.employeeId,
       firstName: employee.firstName,
       lastName: employee.lastName

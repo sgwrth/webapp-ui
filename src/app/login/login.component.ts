@@ -12,8 +12,7 @@ export class LoginComponent {
     private checkUser: CheckUserService
   ) {}
   loginSuccessful: boolean = false
-  passwordIncorrect: boolean = false
-  userUnknown: boolean = false
+  isCredentialsIncorrect = false
   waiting: boolean = false
   username: string = ''
   password: string = ''
@@ -29,23 +28,15 @@ export class LoginComponent {
           this.loginSuccessful = true
           this.waiting = false
         }
-        if (result == 'password incorrect') {
-          console.log('password incorrect')
-          this.userUnknown = false
-          this.passwordIncorrect = true
-          this.waiting = false
-        }
-        if (result == 'user not found') {
-          console.log('user not found')
-          this.userUnknown = true
-          this.passwordIncorrect = false
+        if (result == 'username and/or password incorrect') {
+          console.log('username and/or password incorrect')
+          this.isCredentialsIncorrect = true
           this.waiting = false
         }
       })
     ).subscribe()
   }
   killError(): void {
-    this.passwordIncorrect = false
-    this.userUnknown = false
+    this.isCredentialsIncorrect = false
   }
 }

@@ -9,7 +9,7 @@ export class CheckUserService {
   constructor(
     private http: HttpClient
   ) { }
-  baseUrl: string = 'https://nrl5yjho5h.execute-api.eu-central-1.amazonaws.com/users-dev/users'
+  baseUrl: string = 'http://localhost:8080/user'
   checkCreds(user: User) {
     return this.http.post(this.baseUrl, {
       "username": user.username,
