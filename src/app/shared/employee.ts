@@ -1,5 +1,7 @@
 export interface Employee {
-    employeeId: String
-    firstName: String
-    lastName: String
+    id: number
+    firstName: string
+    lastName: string
+    createdBy: string
+    createdWhen: string
 }

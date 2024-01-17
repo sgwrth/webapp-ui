@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
 import { Employee } from '../shared/employee';
 import { MatTable } from '@angular/material/table';
@@ -19,10 +19,13 @@ export class EmployeeListComponent implements OnInit {
   showAddEmployeeInput: boolean = false
   displayedColumns: string[] = ['name', 'edit', 'fire']
   @ViewChild(MatTable) table?: MatTable<any>
+
   constructor(
       private emplServ: EmployeeService,
-      private dialogConfirm: DialogService
-    ) {}
+      private dialogConfirm: DialogService,
+    ) {
+    }
+
   openConfirm(employee: Employee): void {
     const dialogRef = this.dialogConfirm.dialog.open(ConfirmDeleteComponent, {
       data: employee

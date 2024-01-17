@@ -15,12 +15,12 @@ import { MatInputModule } from '@angular/material/input';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { PopupConfirmDeleteComponent } from './popup-confirm-delete/popup-confirm-delete.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ErrorNotFoundComponent } from './error-not-found/error-not-found.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -30,10 +30,10 @@ import { MatIconModule } from '@angular/material/icon';
     LoginComponent,
     EmployeeAddComponent,
     ConfirmDeleteComponent,
-    PopupConfirmDeleteComponent,
     EmployeeDetailsComponent,
     ErrorNotFoundComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

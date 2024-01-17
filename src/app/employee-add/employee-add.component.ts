@@ -9,9 +9,11 @@ import { EmployeeService } from '../shared/employee.service';
 })
 export class EmployeeAddComponent {
   employee: Employee = {
-    "employeeId": '',
+    "id": -1,
     "firstName": '',
-    "lastName": ''
+    "lastName": '',
+    "createdBy": '',
+    "createdWhen": ''
   }
   @Input() showAddEmployee: boolean = false
   @Output() pushEmplToList = new EventEmitter<Employee>()
@@ -22,9 +24,11 @@ export class EmployeeAddComponent {
         .subscribe(empl => this.pushEmplToList.emit(empl))
     this.hideAddEmpl.emit()
     this.employee = {
-      "employeeId": '',
+      "id": -1,
       "firstName": '',
-      "lastName": ''
+      "lastName": '',
+      "createdBy": '',
+      "createdWhen": ''
     }
   }
 }
