@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CheckUserService } from '../shared/check-user.service';
-import { tap } from 'rxjs';
+import { catchError, tap, throwError } from 'rxjs';
 import { TokenService } from '../shared/token.service';
 
 @Component({
@@ -25,18 +25,19 @@ export class LoginComponent {
       "email": this.email,
       "password": this.password
     }).pipe(
-      tap(result => {
-        if (result.token != null) {
+      catchError(error => {
+        this.isCredentialsIncorrect = true
+        this.loginSuccessful = false
+        this.waiting = false
+        return throwError(error)
+      }),
+      tap(response => {
+        if (response.token != null) {
           console.log('login successful!')
           this.loginSuccessful = true
           this.waiting = false
-          console.log('token: ' + result.token)
-          this.tokenService.token = result.token
-        }
-        if (result.token == null) {
-          console.log('username and/or password incorrect')
-          this.isCredentialsIncorrect = true
-          this.waiting = false
+          console.log('token: ' + response.token)
+          this.tokenService.token = response.token
         }
       })
     ).subscribe()
