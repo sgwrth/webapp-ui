@@ -31,7 +31,7 @@ export class LoginComponent {
         this.isCredentialsIncorrect = true
         this.loginSuccessful = false
         this.waiting = false
-        return throwError(error)
+        return throwError(() => new Error(error))
       }),
       tap(response => {
         if (response.token != null) {
@@ -41,6 +41,7 @@ export class LoginComponent {
           console.log('token: ' + response.token)
           this.tokenService.token = response.token
           this.loggedInUserService.accountname = response.accountname
+          this.loggedInUserService.email = response.email
         }
       })
     ).subscribe()

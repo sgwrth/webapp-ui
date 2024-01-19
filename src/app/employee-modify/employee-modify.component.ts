@@ -9,14 +9,18 @@ import { NgForm } from '@angular/forms';
   styleUrl: './employee-modify.component.css'
 })
 export class EmployeeModifyComponent {
+
   @Input() employeeToBeModified: Employee[] = []
   @ViewChild('employeeForm') emplForm?: NgForm;
+
   constructor(
-    private emplServ: EmployeeService
+    private emplServ: EmployeeService,
   ) {}
+
   modifyEmployee(employee: Employee): void {
     this.emplServ.updateEmployee(employee)
-        .subscribe(employee => console.log(employee))
+        .subscribe(empl => console.log(empl))
     this.employeeToBeModified.pop()
   }
+
 }

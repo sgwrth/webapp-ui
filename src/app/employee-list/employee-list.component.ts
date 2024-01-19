@@ -4,6 +4,7 @@ import { Employee } from '../shared/employee';
 import { MatTable } from '@angular/material/table';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { DialogService } from '../shared/dialog.service';
+import { LoggedInUserService } from '../shared/logged-in-user.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -23,6 +24,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
       private emplServ: EmployeeService,
       private dialogConfirm: DialogService,
+      private loggedInUserService: LoggedInUserService
     ) {
     }
 
@@ -38,6 +40,7 @@ export class EmployeeListComponent implements OnInit {
     while (this.employeeSelectedForModification.length) {
       this.employeeSelectedForModification.pop()
     }
+    console.log(employee)
     this.employeeSelectedForModification.push(employee)
   }
   showAddEmployee(): void {
