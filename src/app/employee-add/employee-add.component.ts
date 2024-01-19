@@ -13,7 +13,9 @@ export class EmployeeAddComponent {
     "firstName": '',
     "lastName": '',
     "createdBy": '',
-    "createdWhen": ''
+    "createdWhen": '',
+    "lastEditedBy": '',
+    "lastEditedWhen": ''
   }
   @Input() showAddEmployee: boolean = false
   @Output() pushEmplToList = new EventEmitter<Employee>()
@@ -28,7 +30,9 @@ export class EmployeeAddComponent {
       "firstName": '',
       "lastName": '',
       "createdBy": '',
-      "createdWhen": ''
+      "createdWhen": '',
+      "lastEditedBy": '',
+      "lastEditedWhen": ''
     }
   }
 }

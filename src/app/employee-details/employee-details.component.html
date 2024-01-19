@@ -1,1 +1,35 @@
-<p>employee-details works!</p>
+<h2>Details</h2>
+<table>
+    <tr>
+        <td>ID:</td>
+        <td>{{ employee?.id }}</td>
+    </tr>
+    <tr>
+        <td>First name:</td>
+        <td>{{ employee?.firstName}}</td>
+    </tr>
+    <tr>
+        <td>Last name:</td>
+        <td>{{ employee?.lastName }}</td>
+    </tr>
+
+
+    <h3>Entry metadata</h3>
+
+    <tr>
+        <td>Created by:</td>
+        <td>{{ employee?.createdBy }}</td>
+    </tr>
+    <tr>
+        <td>Created on:</td>
+        <td>{{ employee?.createdWhen}}</td>
+    </tr>
+    <tr>
+        <td>Last edited by:</td>
+        <td>{{ employee?.lastEditedBy}}</td>
+    </tr>
+    <tr>
+        <td>Last edited on:</td>
+        <td>{{ employee?.lastEditedWhen}}</td>
+    </tr>
+</table>

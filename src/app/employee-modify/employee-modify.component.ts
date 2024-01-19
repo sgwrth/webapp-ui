@@ -16,7 +16,7 @@ export class EmployeeModifyComponent {
   ) {}
   modifyEmployee(employee: Employee): void {
     this.emplServ.updateEmployee(employee)
-        .subscribe()
+        .subscribe(employee => console.log(employee))
     this.employeeToBeModified.pop()
   }
 }

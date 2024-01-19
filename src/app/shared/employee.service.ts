@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { TokenService } from './token.service';
+import { LoggedInUserService } from './logged-in-user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class EmployeeService {
 
   constructor(
       private http: HttpClient,
-      private tokenService: TokenService
+      private tokenService: TokenService,
+      private loggedInUserService: LoggedInUserService
+
   ) { }
 
   token: string = this.tokenService.token
@@ -26,17 +29,24 @@ export class EmployeeService {
   getEmployees(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.baseUrl, { headers: this.httpHeaders })
   }
+  getEmployeeById(id: number): Observable<Employee> {
+    return this.http.get<Employee>(
+        `${this.baseUrl}/${id}`, { headers: this.httpHeaders}
+    )
+  }
   updateEmployee(employee: Employee): Observable<Employee> {
     return this.http.put<Employee>(`${this.baseUrl}/${employee.id}`, {
       firstName: employee.firstName,
-      lastName: employee.lastName
+      lastName: employee.lastName,
+      lastEditedBy: this.loggedInUserService.accountname
     },
     { headers: this.httpHeaders })
   }
   addNewEmployee(employee: Employee): Observable<Employee> {
     return this.http.post<Employee>(this.baseUrl, {
       firstName: employee.firstName,
-      lastName: employee.lastName 
+      lastName: employee.lastName,
+      createdBy: this.loggedInUserService.accountname
     },
     { headers: this.httpHeaders })
   }

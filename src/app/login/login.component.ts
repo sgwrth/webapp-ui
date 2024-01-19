@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CheckUserService } from '../shared/check-user.service';
 import { catchError, tap, throwError } from 'rxjs';
 import { TokenService } from '../shared/token.service';
+import { LoggedInUserService } from '../shared/logged-in-user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ import { TokenService } from '../shared/token.service';
 export class LoginComponent {
   constructor(
       private checkUser: CheckUserService,
-      private tokenService: TokenService
+      private tokenService: TokenService,
+      private loggedInUserService: LoggedInUserService
   ) {}
   loginSuccessful: boolean = false
   isCredentialsIncorrect = false
@@ -38,6 +40,7 @@ export class LoginComponent {
           this.waiting = false
           console.log('token: ' + response.token)
           this.tokenService.token = response.token
+          this.loggedInUserService.accountname = response.accountname
         }
       })
     ).subscribe()

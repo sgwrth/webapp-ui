@@ -4,4 +4,7 @@ export interface Employee {
     lastName: string
     createdBy: string
     createdWhen: string
+    lastEditedBy: string
+    lastEditedWhen: string
+
 }
