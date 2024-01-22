@@ -24,7 +24,6 @@ export class EmployeeListComponent implements OnInit {
   constructor(
       private emplServ: EmployeeService,
       private dialogConfirm: DialogService,
-      private loggedInUserService: LoggedInUserService
     ) {
     }
 

@@ -12,8 +12,8 @@ import { getLocaleFirstDayOfWeek } from '@angular/common';
 })
 export class EmployeeService {
 
-  baseUrl = 'http://localhost:8081/api/v1/employees'
-  // baseUrl = 'http://3.67.169.17:8081/api/v1/employees'
+  // baseUrl = 'http://localhost:8081/api/v1/employees'
+  baseUrl = 'http://3.67.169.17:8081/api/v1/employees'
 
   constructor(
       private http: HttpClient,
