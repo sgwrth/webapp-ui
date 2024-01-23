@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CheckUserService } from '../shared/check-user.service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
-import { TokenService } from '../shared/token.service';
 import { Store } from '@ngxs/store';
 import { AddUserNgxs } from '../ngxs-store/user-ngxs.actions';
 
@@ -11,6 +10,7 @@ import { AddUserNgxs } from '../ngxs-store/user-ngxs.actions';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
   userNgxs$: Observable<any>
   loginSuccessful: boolean = false
   isCredentialsIncorrect = false
@@ -20,7 +20,6 @@ export class LoginComponent {
 
   constructor(
       private checkUser: CheckUserService,
-      private tokenService: TokenService,
       private store: Store
   ) {
     this.userNgxs$ = this.store.select(state => state.userNgxs.userNgxs)
@@ -42,7 +41,6 @@ export class LoginComponent {
         if (response.token != null) {
           this.loginSuccessful = true
           this.waiting = false
-          this.tokenService.token = response.token
           const email = response.email
           const accountname = response.accountname
           const token = response.token
@@ -51,7 +49,9 @@ export class LoginComponent {
       })
     ).subscribe()
   }
+
   killError(): void {
     this.isCredentialsIncorrect = false
   }
+
 }
