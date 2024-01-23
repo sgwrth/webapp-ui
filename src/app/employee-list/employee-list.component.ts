@@ -4,7 +4,6 @@ import { Employee } from '../shared/models/employee';
 import { MatTable } from '@angular/material/table';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { DialogService } from '../shared/dialog.service';
-import { LoggedInUserService } from '../shared/logged-in-user.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -12,6 +11,7 @@ import { LoggedInUserService } from '../shared/logged-in-user.service';
   styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent implements OnInit {
+
   baseUrl: String = ''
   employee?: Employee
   employees: Employee[] = []
@@ -24,8 +24,7 @@ export class EmployeeListComponent implements OnInit {
   constructor(
       private emplServ: EmployeeService,
       private dialogConfirm: DialogService,
-    ) {
-    }
+    ) { }
 
   openConfirm(employee: Employee): void {
     const dialogRef = this.dialogConfirm.dialog.open(ConfirmDeleteComponent, {
@@ -35,6 +34,7 @@ export class EmployeeListComponent implements OnInit {
       this.removeEmployeeFromList(result)
     })
   }
+
   selectEmployeeForModification(employee: Employee): void {
     while (this.employeeSelectedForModification.length) {
       this.employeeSelectedForModification.pop()
@@ -42,16 +42,20 @@ export class EmployeeListComponent implements OnInit {
     console.log(employee)
     this.employeeSelectedForModification.push(employee)
   }
+
   showAddEmployee(): void {
     this.showAddEmployeeInput = true
   }
+
   hideAddEmplInput(): void {
     this.showAddEmployeeInput = false
   }
+
   addEmployeeToList(employee: Employee): void {
     this.employees.push(employee)
     this.table?.renderRows()
   }
+
   selectForDeletion(employee: Employee): void {
     while (this.employeeSelectedForDeletion.length) {
       this.employeeSelectedForDeletion.pop()
@@ -60,6 +64,7 @@ export class EmployeeListComponent implements OnInit {
     this.table?.renderRows()
     this.openConfirm(employee)
   }
+
   removeEmployeeFromList(employee: Employee): void {
     for (let empl of this.employees) {
       if (employee == empl) {
@@ -69,8 +74,10 @@ export class EmployeeListComponent implements OnInit {
     }
     this.table?.renderRows()
   }
+
   ngOnInit(): void {
     this.emplServ.getEmployees()
         .subscribe(empls => this.employees = empls)
   }
+
 }
