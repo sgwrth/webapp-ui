@@ -11,13 +11,13 @@ import { Store } from '@ngxs/store';
 export class WelcomeComponent {
 
   loggedInUser: string = 'User'
-  userNgxs: Observable<any>
+  userNgxs$: Observable<any>
 
   constructor(
       private loggedInUserService: LoggedInUserService,
       private store: Store
   ) {
-    this.userNgxs = this.store.select(state => state.userNgxs.userNgxs)
+    this.userNgxs$ = this.store.select(state => state.userNgxs.userNgxs)
   }
 
   ngOnInit() {

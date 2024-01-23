@@ -1,23 +1,23 @@
-<h2>Hello {{ loggedInUser }}!</h2>
+<div *ngFor="let user of userNgxs$ | async">
 
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque iste qui
-    quos voluptatum amet, obcaecati, quas, veritatis repellendus eos incidunt
-    nostrum facere magni doloribus illo illum similique exercitationem nobis
-    voluptatibus!</p>
+    <h2>Hello {{ user.accountname }}!</h2>
 
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque iste qui
-    quos voluptatum amet, obcaecati, quas, veritatis repellendus eos incidunt
-    nostrum facere magni doloribus illo illum similique exercitationem nobis
-    voluptatibus! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-    Itaque iste qui quos voluptatum amet, obcaecati, quas, veritatis repellendus
-    eos incidunt nostrum facere magni doloribus illo illum similique 
-    voluptatibus!</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque iste qui
+        quos voluptatum amet, obcaecati, quas, veritatis repellendus eos incidunt
+        nostrum facere magni doloribus illo illum similique exercitationem nobis
+        voluptatibus!</p>
 
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque iste qui
-    quos voluptatum amet, obcaecati, quas, veritatis repellendus eos incidunt
-    nostrum facere magni doloribus illo illum similique exercitationem nobis
-    voluptatibus!</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque iste qui
+        quos voluptatum amet, obcaecati, quas, veritatis repellendus eos incidunt
+        nostrum facere magni doloribus illo illum similique exercitationem nobis
+        voluptatibus! Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+        Itaque iste qui quos voluptatum amet, obcaecati, quas, veritatis repellendus
+        eos incidunt nostrum facere magni doloribus illo illum similique 
+        voluptatibus!</p>
 
-<div *ngFor="let user of userNgxs | async">
-    {{ user.accountname }}
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque iste qui
+        quos voluptatum amet, obcaecati, quas, veritatis repellendus eos incidunt
+        nostrum facere magni doloribus illo illum similique exercitationem nobis
+        voluptatibus!</p>
+
 </div>
