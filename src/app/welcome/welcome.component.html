@@ -17,3 +17,7 @@
     quos voluptatum amet, obcaecati, quas, veritatis repellendus eos incidunt
     nostrum facere magni doloribus illo illum similique exercitationem nobis
     voluptatibus!</p>
+
+<div *ngFor="let user of userNgxs | async">
+    {{ user.accountname }}
+</div>

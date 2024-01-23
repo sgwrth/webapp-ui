@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from '../shared/employee.service';
-import { Employee } from '../shared/employee';
+import { Employee } from '../shared/models/employee';
 import { MatTable } from '@angular/material/table';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { DialogService } from '../shared/dialog.service';

@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { Employee } from '../shared/employee';
+import { Employee } from '../shared/models/employee';
 import { EmployeeService } from '../shared/employee.service';
 import { NgForm } from '@angular/forms';
 

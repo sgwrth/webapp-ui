@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CheckUserService } from '../shared/check-user.service';
-import { catchError, tap, throwError } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { TokenService } from '../shared/token.service';
 import { LoggedInUserService } from '../shared/logged-in-user.service';
+import { Store } from '@ngxs/store';
+import { AddUserNgxs } from '../ngxs-store/user-ngxs.actions';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +12,22 @@ import { LoggedInUserService } from '../shared/logged-in-user.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(
-      private checkUser: CheckUserService,
-      private tokenService: TokenService,
-      private loggedInUserService: LoggedInUserService
-  ) {}
+  userNgxs: Observable<any>
   loginSuccessful: boolean = false
   isCredentialsIncorrect = false
   waiting: boolean = false
   email: string = ''
   password: string = ''
 
+  constructor(
+      private checkUser: CheckUserService,
+      private tokenService: TokenService,
+      private loggedInUserService: LoggedInUserService,
+      private store: Store
+  ) {
+    this.userNgxs = this.store.select(state => state.userNgxs.userNgxs)
+  }
+  
   checkCredentials(): void {
     this.waiting = true
     this.checkUser.checkCreds({
@@ -42,6 +49,12 @@ export class LoginComponent {
           this.tokenService.token = response.token
           this.loggedInUserService.accountname = response.accountname
           this.loggedInUserService.email = response.email
+          const email = response.email
+          const accountname = response.accountname
+          const token = response.token
+          console.log(email, accountname, token)
+          this.store.dispatch(new AddUserNgxs({email, accountname, token}))
+          this.userNgxs.subscribe(user => console.log(user))
         }
       })
     ).subscribe()
