@@ -6,5 +6,4 @@ export interface Employee {
     createdWhen: string
     lastEditedBy: string
     lastEditedWhen: string
-
 }

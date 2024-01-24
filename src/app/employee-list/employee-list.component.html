@@ -1,7 +1,7 @@
 <!-- <div *ngIf="employees.length; else spinner"> -->
 <div>
   <div>
-    <table mat-table [dataSource]="employees">
+    <table mat-table [dataSource]="employeeList$ | async">
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
         <td mat-cell *matCellDef="let employee">
@@ -18,8 +18,8 @@
       <ng-container matColumnDef="fire">
         <th mat-header-cell *matHeaderCellDef>FIRE</th>
         <td mat-cell *matCellDef="let employee">
-          <button mat-raised-button color="warn"
-              (click)="selectForDeletion(employee)">FIRE</button>
+          <!-- <button mat-raised-button color="warn"
+              (click)="selectForDeletion(employee)">FIRE</button> -->
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

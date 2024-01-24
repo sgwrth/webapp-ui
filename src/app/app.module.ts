@@ -26,6 +26,7 @@ import { NGXS_LOGGER_PLUGIN_OPTIONS, NgxsLoggerPlugin, NgxsLoggerPluginModule } 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { UserNgxs } from './shared/models/user-ngxs';
 import { UserNgxsState } from './ngxs-store/user-ngxs.store';
+import { EmployeeListState } from './ngxs-store/employee-list.store';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { UserNgxsState } from './ngxs-store/user-ngxs.store';
     MatMenuModule,
     MatIconModule,
     NgxsModule.forRoot([
-      UserNgxsState
+      UserNgxsState,
+      EmployeeListState
     ]),
     NgxsLoggerPluginModule,
     NgxsReduxDevtoolsPluginModule
