@@ -22,9 +22,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { RegisterComponent } from './register/register.component';
 import { NgxsModule } from '@ngxs/store';
-import { NGXS_LOGGER_PLUGIN_OPTIONS, NgxsLoggerPlugin, NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { UserNgxs } from './shared/models/user-ngxs';
 import { UserNgxsState } from './ngxs-store/user-ngxs.store';
 import { EmployeeListState } from './ngxs-store/employee-list.store';
 
@@ -39,7 +38,7 @@ import { EmployeeListState } from './ngxs-store/employee-list.store';
     EmployeeDetailsComponent,
     ErrorNotFoundComponent,
     WelcomeComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,

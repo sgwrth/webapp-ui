@@ -1,16 +1,16 @@
 import { Employee } from "../shared/models/employee"
 
-export class GetEmployeeList {
-    static readonly type = '[EmployeeList] GetList'
+export class GetEmployeesFromDb {
+    static readonly type = '[EmployeeList] GetEmployees'
     constructor() {}
 }
 
-export class AddEmployeeToList {
-    static readonly type = '[EmployeeList] AddToList'
+export class CreateEmployeeInDb {
+    static readonly type = '[EmployeeList] CreateEmployeeInDb'
     constructor(public payload: Employee) {}
 }
 
-export class RemoveEmployeeFromList {
-    static readonly type = '[EmployeeList] RemoveFromList'
+export class DeleteEmployeeFromDb {
+    static readonly type = '[EmployeeList] DeleteEmployeeFromDb'
     constructor(public payload: Employee) {}
 }

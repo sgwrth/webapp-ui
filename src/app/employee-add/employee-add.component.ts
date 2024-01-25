@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Employee } from '../shared/models/employee';
-import { EmployeeService } from '../shared/employee.service';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { AddEmployeeToList } from '../ngxs-store/employee-list.actions';
+import { CreateEmployeeInDb } from '../ngxs-store/employee-list.actions';
 
 @Component({
   selector: 'app-employee-add',
@@ -11,6 +10,8 @@ import { AddEmployeeToList } from '../ngxs-store/employee-list.actions';
   styleUrl: './employee-add.component.css'
 })
 export class EmployeeAddComponent {
+
+  employeeList$: Observable<any>
   employee: Employee = {
     "id": -1,
     "firstName": '',
@@ -24,16 +25,15 @@ export class EmployeeAddComponent {
   @Output() pushEmplToList = new EventEmitter<Employee>()
   @Output() hideAddEmpl = new EventEmitter<any>()
 
-  employeeList$: Observable<any>
-
   constructor(
       private store: Store
   ) {
-    this.employeeList$ = this.store.select(state => state.employeeList.employeeList)
+    this.employeeList$ =
+        this.store.select(state => state.employeeList.employeeList)
   }
 
   addEmployee(employee: Employee): void {
-    this.store.dispatch(new AddEmployeeToList(employee))
+    this.store.dispatch(new CreateEmployeeInDb(employee))
     this.hideAddEmpl.emit()
     this.employee = {
       "id": -1,

@@ -2,6 +2,9 @@ import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Employee } from '../shared/models/employee';
 import { EmployeeService } from '../shared/employee.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngxs/store';
+import { DeleteEmployeeFromDb } from '../ngxs-store/employee-list.actions';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,20 +13,28 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrl: './confirm-delete.component.css'
 })
 export class ConfirmDeleteComponent {
-  constructor(
-      private emplServ: EmployeeService,
-      private dialog: MatDialogRef<ConfirmDeleteComponent>,
-      @Inject(MAT_DIALOG_DATA) public data: Employee
-  ) {}
+
+  employeeList$: Observable<any>
   isEmployeeSelectedForDeletion: boolean = false
   @Input() employeeToDelete: Employee[] = []
   @Output() removeEmployee = new EventEmitter<Employee>();
+
+  constructor(
+      private dialog: MatDialogRef<ConfirmDeleteComponent>,
+      private store: Store,
+      @Inject(MAT_DIALOG_DATA) public data: Employee
+  ) {
+    this.employeeList$ =
+        this.store.select(state => state.employeeList.employeeList)
+  }
+
   handoverEmployee(employee: Employee): void {
     this.dialog.close(employee)
   }
+
   deleteForGood(employee: Employee): void {
-    this.emplServ.deleteEmployee(employee)
-        .subscribe()
+    // this.store.dispatch(new DeleteEmployeeFromDb(employee))
     this.handoverEmployee(employee)
   }
+
 }

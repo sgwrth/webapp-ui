@@ -5,8 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { DialogService } from '../shared/dialog.service';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { AddEmployeeToList, GetEmployeeList } from '../ngxs-store/employee-list.actions';
+import { Observable, tap } from 'rxjs';
+import { CreateEmployeeInDb, DeleteEmployeeFromDb, GetEmployeesFromDb } from '../ngxs-store/employee-list.actions';
 
 @Component({
   selector: 'app-employee-list',
@@ -17,7 +17,6 @@ export class EmployeeListComponent implements OnInit {
 
   baseUrl: String = ''
   employee?: Employee
-  // employees: Employee[] = []
   employeeSelectedForModification: Employee[] = []
   employeeSelectedForDeletion: Employee[] = []
   showAddEmployeeInput: boolean = false
@@ -34,14 +33,27 @@ export class EmployeeListComponent implements OnInit {
       this.employeeList$ = this.store.select(state => state.employeeList.employeeList)
     }
 
-  // openConfirm(employee: Employee): void {
-  //   const dialogRef = this.dialogConfirm.dialog.open(ConfirmDeleteComponent, {
-  //     data: employee
-  //   })
-  //   dialogRef.afterClosed().subscribe((result) => {
-  //     this.removeEmployeeFromList(result)
-  //   })
-  // }
+  openConfirm(employee: Employee): void {
+    const dialogRef = this.dialogConfirm.dialog.open(ConfirmDeleteComponent, {
+      data: employee
+    })
+    dialogRef.afterClosed()
+        // .pipe(tap(res => {
+        //   this.store.dispatch(new DeleteEmployeeFromDb(res))
+        //   this.table?.renderRows()
+        // }))
+        .subscribe(res => {
+          this.store.dispatch(new DeleteEmployeeFromDb(res))
+          this.table?.renderRows()
+        })
+    // dialogRef.afterClosed().subscribe((result) => {
+      // this.removeEmployeeFromList(result)
+    // })
+  }
+
+  refreshTable(): void {
+    this.table?.renderRows()
+  }
 
   selectEmployeeForModification(employee: Employee): void {
     while (this.employeeSelectedForModification.length) {
@@ -60,19 +72,16 @@ export class EmployeeListComponent implements OnInit {
   }
 
   addEmployeeToList(employee: Employee): void {
-    this.store.dispatch(new AddEmployeeToList(employee))
-    // this.employees.push(employee)
-    this.table?.renderRows()
+    this.store.dispatch(new CreateEmployeeInDb(employee))
   }
 
-  // selectForDeletion(employee: Employee): void {
-  //   while (this.employeeSelectedForDeletion.length) {
-  //     this.employeeSelectedForDeletion.pop()
-  //   }
-  //   this.employeeSelectedForDeletion.push(employee)
-  //   this.table?.renderRows()
-  //   this.openConfirm(employee)
-  // }
+  selectForDeletion(employee: Employee): void {
+    while (this.employeeSelectedForDeletion.length) {
+      this.employeeSelectedForDeletion.pop()
+    }
+    this.employeeSelectedForDeletion.push(employee)
+    this.openConfirm(employee)
+  }
 
   // removeEmployeeFromList(employee: Employee): void {
   //   for (let empl of this.employees) {
@@ -85,9 +94,7 @@ export class EmployeeListComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetEmployeeList())
-    // this.emplServ.getEmployees()
-        // .subscribe(empls => this.employees = empls)
+    this.store.dispatch(new GetEmployeesFromDb())
   }
 
 }
