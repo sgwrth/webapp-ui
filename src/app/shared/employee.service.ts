@@ -9,8 +9,8 @@ import { Store } from '@ngxs/store';
 })
 export class EmployeeService {
 
-  // baseUrl = 'http://localhost:8081/api/v1/employees'
-  baseUrl = 'http://3.67.169.17:8081/api/v1/employees'
+  baseUrl = 'http://localhost:8081/api/v1/employees'
+  // baseUrl = 'http://3.67.169.17:8081/api/v1/employees'
   userNgxs$: Observable<any>
   TOKEN_PREFIX: string = 'Bearer'
 
@@ -68,6 +68,7 @@ export class EmployeeService {
     return this.http.post<Employee>(this.baseUrl, {
       firstName: employee.firstName,
       lastName: employee.lastName,
+      salary: employee.salary,
       lastEditedBy: this.getUserInfo(),
       createdBy: this.getUserInfo()
     },

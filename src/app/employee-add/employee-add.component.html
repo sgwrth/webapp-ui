@@ -1,31 +1,32 @@
 <div *ngIf="showAddEmployee">
   <h2>employee-add.component</h2>
   <div>
-    <form #employeeForm (ngSubmit)="addEmployee(employee)">
+    <form #employeeForm (ngSubmit)="submitEmployee()" [formGroup]=employeeFormData>
     <div>
       <div>
         <label for="firstName">First name: </label>
         <mat-form-field>
-          <input matInput id="firstName" [(ngModel)]="employee.firstName"
+          <input matInput id="firstName" formControlName="firstName"
               name="firstName">
         </mat-form-field>
       </div>
       <div>
         <label for="lastName">Last name: </label>
         <mat-form-field>
-          <input matInput id="lastName" [(ngModel)]="employee.lastName"
+          <input matInput id="lastName" formControlName="lastName"
               name="lastName">
         </mat-form-field>
       </div>
       <div>
         <label for="salary">Salary: </label>
         <mat-form-field>
-          <input matInput id="salary" [(ngModel)]="employee.salary"
+          <input matInput id="salary" formControlName="salary"
               name="salary">
         </mat-form-field>
       </div>
       <div>
-        <button mat-raised-button type="submit">SUBMIT</button>
+        <button mat-raised-button type="submit"
+            [disabled]="!employeeFormData.valid">SUBMIT</button>
       </div>
     </div>
     </form>

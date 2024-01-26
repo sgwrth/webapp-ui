@@ -1,11 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { EmployeeService } from '../shared/employee.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Employee } from '../shared/models/employee';
 import { MatTable } from '@angular/material/table';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { DialogService } from '../shared/dialog.service';
 import { Store } from '@ngxs/store';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CreateEmployeeInDb, DeleteEmployeeFromDb, GetEmployeesFromDb } from '../ngxs-store/employee-list.actions';
 
 @Component({
@@ -20,13 +19,12 @@ export class EmployeeListComponent implements OnInit {
   employeeSelectedForModification: Employee[] = []
   employeeSelectedForDeletion: Employee[] = []
   showAddEmployeeInput: boolean = false
-  displayedColumns: string[] = ['name', 'edit', 'fire']
+  displayedColumns: string[] = ['name', 'salary', 'edit', 'fire']
   @ViewChild(MatTable) table?: MatTable<any>
 
   employeeList$: Observable<any>
 
   constructor(
-      private emplServ: EmployeeService,
       private dialogConfirm: DialogService,
       private store: Store
     ) {

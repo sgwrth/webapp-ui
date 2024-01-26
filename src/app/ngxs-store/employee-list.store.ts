@@ -1,10 +1,10 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { Employee } from "../shared/models/employee";
 import { Injectable } from "@angular/core";
-import { CreateEmployeeInDb as SaveEmployeeToDb, GetEmployeesFromDb as GetEmployeesFromDb, DeleteEmployeeFromDb as DeleteEmployeeFromDb, CreateEmployeeInDb } from "./employee-list.actions";
 import { EmployeeService } from "../shared/employee.service";
 import { tap } from "rxjs";
 import { patch, removeItem } from "@ngxs/store/operators";
+import { CreateEmployeeInDb, DeleteEmployeeFromDb, GetEmployeesFromDb } from "./employee-list.actions";
 
 export class EmployeeListStateModel {
     employeeList!: Employee[]
@@ -36,7 +36,7 @@ export class EmployeeListState {
     @Action(CreateEmployeeInDb)
     createEmployeeInDb(
         {getState, patchState}: StateContext<EmployeeListStateModel>,
-        {payload}: SaveEmployeeToDb
+        {payload}: CreateEmployeeInDb
     ) {
         const state = getState()
         this.emplServ.addNewEmployee(payload)
@@ -55,15 +55,16 @@ export class EmployeeListState {
         {setState}: StateContext<EmployeeListStateModel>,
         {payload}: DeleteEmployeeFromDb
     ) {
-        // const state = getState()
         this.emplServ.deleteEmployee(payload)
-            .pipe(tap((deletedEmpl) => {
-                setState(
-                    patch({
-                        employeeList: removeItem<Employee>((empl) => empl === deletedEmpl)
-                    })
-                )
-            }))
+            .pipe(
+                tap((deletedEmpl) => {
+                    setState(
+                        patch({
+                            employeeList: removeItem<Employee>((empl) => deletedEmpl === empl)
+                        })
+                    )
+                })
+            )
             .subscribe()
     }
 

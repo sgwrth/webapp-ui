@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class CheckUserService {
 
-  // baseUrl: string = 'http://localhost:8081/api/v1/auth/authenticate'
-  baseUrl: string = 'http://3.67.169.17:8081/api/v1/auth/authenticate'
+  baseUrl: string = 'http://localhost:8081/api/v1/auth/authenticate'
+  // baseUrl: string = 'http://3.67.169.17:8081/api/v1/auth/authenticate'
 
   constructor(
     private http: HttpClient

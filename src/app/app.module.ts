@@ -26,6 +26,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { UserNgxsState } from './ngxs-store/user-ngxs.store';
 import { EmployeeListState } from './ngxs-store/employee-list.store';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { EmployeeListState } from './ngxs-store/employee-list.store';
       EmployeeListState
     ]),
     NgxsLoggerPluginModule,
-    NgxsReduxDevtoolsPluginModule
+    NgxsReduxDevtoolsPluginModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
