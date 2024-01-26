@@ -5,7 +5,6 @@ import { ErrorNotFoundComponent } from './error-not-found/error-not-found.compon
 import { WelcomeComponent } from './welcome/welcome.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
-import { SwaggerUiComponent } from './swagger-ui/swagger-ui.component';
 
 const routes: Routes = [
   { path: 'employees', component: EmployeeListComponent },

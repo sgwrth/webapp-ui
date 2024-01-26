@@ -18,6 +18,13 @@
         </mat-form-field>
       </div>
       <div>
+        <label for="salary">Salary: </label>
+        <mat-form-field>
+          <input matInput id="salary" [(ngModel)]="employee.salary"
+              name="salary">
+        </mat-form-field>
+      </div>
+      <div>
         <button mat-raised-button type="submit">SUBMIT</button>
       </div>
     </div>
