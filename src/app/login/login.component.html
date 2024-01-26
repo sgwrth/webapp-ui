@@ -32,6 +32,9 @@
   <button mat-icon-button [matMenuTriggerFor]="appMenu">
     <mat-icon>menu</mat-icon>
   </button>
+  <button mat-icon-button (click)="refreshEmployeeList()">
+    <mat-icon>refresh</mat-icon>
+  </button>
   <mat-menu #appMenu="matMenu">
     <button mat-menu-item routerLink="/welcome">Welcome</button>
     <button mat-menu-item routerLink="/employees">Employees</button>

@@ -4,7 +4,7 @@ import { MatTable } from '@angular/material/table';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 import { DialogService } from '../shared/dialog.service';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { CreateEmployeeInDb, DeleteEmployeeFromDb, GetEmployeesFromDb } from '../ngxs-store/employee-list.actions';
 
 @Component({
@@ -36,21 +36,12 @@ export class EmployeeListComponent implements OnInit {
       data: employee
     })
     dialogRef.afterClosed()
-        // .pipe(tap(res => {
-        //   this.store.dispatch(new DeleteEmployeeFromDb(res))
-        //   this.table?.renderRows()
-        // }))
-        .subscribe(res => {
-          this.store.dispatch(new DeleteEmployeeFromDb(res))
-          this.table?.renderRows()
-        })
-    // dialogRef.afterClosed().subscribe((result) => {
-      // this.removeEmployeeFromList(result)
-    // })
-  }
-
-  refreshTable(): void {
-    this.table?.renderRows()
+        // .pipe(
+        //   tap(res => {
+        //     this.store.dispatch(new DeleteEmployeeFromDb(res))
+        //   })
+        // )
+        .subscribe(res => console.log(res))
   }
 
   selectEmployeeForModification(employee: Employee): void {
@@ -80,16 +71,6 @@ export class EmployeeListComponent implements OnInit {
     this.employeeSelectedForDeletion.push(employee)
     this.openConfirm(employee)
   }
-
-  // removeEmployeeFromList(employee: Employee): void {
-  //   for (let empl of this.employees) {
-  //     if (employee == empl) {
-  //       let index = this.employees.findIndex(e => empl == e)
-  //       this.employees.splice(index, 1)
-  //     }
-  //   }
-  //   this.table?.renderRows()
-  // }
 
   ngOnInit(): void {
     this.store.dispatch(new GetEmployeesFromDb())

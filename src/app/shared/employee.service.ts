@@ -42,29 +42,26 @@ export class EmployeeService {
   }
 
   getEmployees(): Observable<Employee[]> {
-    const httpHeaders = this.createHttpHeaders()
-    return this.http.get<Employee[]>(this.baseUrl, { headers: httpHeaders })
+    return this.http.get<Employee[]>(this.baseUrl,
+        { headers: this.createHttpHeaders() })
   }
 
   getEmployeeById(id: number): Observable<Employee> {
-    const httpHeaders = this.createHttpHeaders()
     return this.http.get<Employee>(
-        `${this.baseUrl}/${id}`, { headers: httpHeaders}
+        `${this.baseUrl}/${id}`, { headers: this.createHttpHeaders() }
     )
   }
   
   updateEmployee(employee: Employee): Observable<Employee> {
-    const httpHeaders = this.createHttpHeaders()
     return this.http.put<Employee>(`${this.baseUrl}/${employee.id}`, {
       firstName: employee.firstName,
       lastName: employee.lastName,
       lastEditedBy: this.getUserInfo()
     },
-    { headers: httpHeaders })
+    { headers: this.createHttpHeaders() })
   }
 
   addNewEmployee(employee: Employee): Observable<Employee> {
-    const httpHeaders = this.createHttpHeaders()
     return this.http.post<Employee>(this.baseUrl, {
       firstName: employee.firstName,
       lastName: employee.lastName,
@@ -72,13 +69,12 @@ export class EmployeeService {
       lastEditedBy: this.getUserInfo(),
       createdBy: this.getUserInfo()
     },
-    { headers: httpHeaders })
+    { headers: this.createHttpHeaders() })
   }
 
   deleteEmployee(employee: Employee): Observable<Employee> {
-    const httpHeaders = this.createHttpHeaders()
     return this.http.delete<Employee>(`${this.baseUrl}/${employee.id}`,
-    { headers: httpHeaders })
+    { headers: this.createHttpHeaders() })
   }
 
 }

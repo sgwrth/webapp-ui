@@ -3,6 +3,7 @@ import { CheckUserService } from '../shared/check-user.service';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Store } from '@ngxs/store';
 import { AddUserNgxs } from '../ngxs-store/user-ngxs.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent {
 
   constructor(
       private checkUser: CheckUserService,
-      private store: Store
+      private store: Store,
+      private router: Router
   ) {
     this.userNgxs$ = this.store.select(state => state.userNgxs.userNgxs)
   }
@@ -41,13 +43,18 @@ export class LoginComponent {
         if (response.token != null) {
           this.loginSuccessful = true
           this.waiting = false
-          const email = response.email
-          const accountname = response.accountname
-          const token = response.token
-          this.store.dispatch(new AddUserNgxs({email, accountname, token}))
+          this.store.dispatch(new AddUserNgxs(response))
         }
       })
     ).subscribe()
+  }
+
+  // hack!
+  refreshEmployeeList(): void {
+    this.router.navigateByUrl('/', { skipLocationChange: true })
+        .then(() => {
+          this.router.navigate(["/employees"])
+        })
   }
 
   killError(): void {

@@ -33,7 +33,7 @@ export class ConfirmDeleteComponent {
   }
 
   deleteForGood(employee: Employee): void {
-    // this.store.dispatch(new DeleteEmployeeFromDb(employee))
+    this.store.dispatch(new DeleteEmployeeFromDb(employee))
     this.handoverEmployee(employee)
   }
 
