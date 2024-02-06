@@ -3,14 +3,14 @@ import { Employee } from './models/employee';
 import { Observable, tap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Store } from '@ngxs/store';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  baseUrl = 'http://localhost:8081/api/v1/employees'
-  // baseUrl = 'http://3.67.169.17:8081/api/v1/employees'
+  baseUrl = environment.baseUrlEmpl
   userNgxs$: Observable<any>
   TOKEN_PREFIX: string = 'Bearer'
 
