@@ -1,0 +1,65 @@
+.centered {
+    text-align: center;
+}
+
+.container {
+    margin: 0.5rem 2.0rem 2.0rem 2.0rem;
+}
+
+.error {
+    text-align: center;
+    font-weight: bold;
+    color: red;
+}
+
+.file-input {
+    display: none;
+}
+
+.m-bottom {
+    margin-bottom: 1.0rem;
+}
+
+.m-left {
+    margin-left: 1.0rem;
+}
+
+.m-top {
+    margin-top: 2.0rem;
+}
+
+.icon-error {
+    color: red;
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.0rem;
+}
+
+.icon-success {
+    color: green;
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-top: 1.0rem;
+    margin-bottom: 1.0rem;
+}
+
+.icon-success-small {
+    color: green;
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+    margin-right: 1.0rem;
+}
+
+.submit-btn {
+    margin-left: 0rem;
+}
+
+.success {
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    margin-bottom: 2.0rem;
+}

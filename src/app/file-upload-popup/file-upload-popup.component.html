@@ -1,0 +1,130 @@
+<div class="container">
+
+    <div *ngIf="(200 != httpStatus) && (undefined != httpStatus); else default" class="centered">
+        <h2>{{ 'uploadPopup.error.http' | translate }}</h2>
+        <h3>{{ 'uploadPopup.error.uploadFailed' | translate }}</h3>
+        <div class="centered">
+            <mat-icon class="icon-error">warning</mat-icon>
+        </div>
+        <div class="error">{{ failedFileName }}<br />
+            {{ 'uploadPopup.error.wasNotUploaded' | translate }}
+        </div>
+        <div class="m-top">
+            <small>[{{ 'uploadPopup.error.httpStatus' | translate }} {{ httpStatus }}]</small>
+        </div>
+        <div class="m-top">
+            <button mat-raised-button color="primary" (click)="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <ng-template #default>
+        <h2>{{ 'uploadPopup.header' | translate }}</h2>
+
+        <div *ngIf="('' == fileName) && (false == hasUploadFailed) && (false == wasUploadSuccessful)">
+            <div>{{ 'uploadPopup.instructions' | translate }}</div>
+            <div>{{ 'uploadPopup.allowedFiletypes' | translate }}</div>
+            <div>
+                <ul>
+                    <li *ngFor="let filetype of allowedFiletypes">{{ filetype }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <input
+                type="file"
+                class="file-input"
+                [accept]="requiredFileType"
+                (change)="onFileSelected($event)"
+                #fileUpload
+            >
+        </div>
+
+        <div *ngIf="isInvalidFiletype" class="m-bottom">
+            <div class="centered">
+                <mat-icon color="warn" class="icon-error">block</mat-icon>
+            </div>
+            <div class="error"><b>{{ 'uploadPopup.error.invalidFiletype' | translate }}</b></div>
+        </div>
+
+        <div *ngIf="('' != fileName) && (false == wasUploadSuccessful)" class="m-bottom">
+            <span><b>{{ 'uploadPopup.selectedForUpload' | translate }}</b>&nbsp;
+                <u>{{ (30 < fileName.length) ? (fileName | slice: 0 : 30) + '...' : fileName }}</u></span>
+        </div>
+
+        <div *ngIf="0 < uploadedFiles.length">
+            <div *ngIf="true == wasUploadSuccessful" class="centered">
+                <mat-icon class="icon-success">check_circle</mat-icon>
+            </div>
+            <div *ngIf="true == wasUploadSuccessful" class="success">
+                <span>{{ 'uploadPopup.success' | translate }}</span>
+            </div>
+        </div>
+
+        <div *ngIf="('' === fileName)" class="centered">
+            <button
+                mat-raised-button
+                color="primary"
+                class="upload-btn"
+                (click)="fileUpload.click()"
+            >
+                <span *ngIf="0 == uploadedFiles.length">
+                    {{ 'uploadPopup.selectFile' | translate }}
+                </span>
+                <span *ngIf="0 != uploadedFiles.length">
+                    {{ 'uploadPopup.selectAnotherFile' | translate }}
+                </span>
+            </button>
+        </div>
+
+        <div *ngIf="false == hasUploadFailed" class="centered">
+            <span *ngIf="('' != fileName)">
+                <button
+                    mat-raised-button
+                    color="warn"
+                    class="submit-btn"
+                    (click)="unselectFile()"
+                >
+                    {{ 'uploadPopup.discardFile' | translate }}
+                </button>
+            </span>
+            <span *ngIf="('' != fileName)" class="m-left">
+                <button
+                    mat-raised-button
+                    color="primary"
+                    class="submit-btn"
+                    (click)="submitFile()"
+                >
+                    {{ 'uploadPopup.sendFile' | translate }}
+                </button>
+            </span>
+        </div>
+
+        <div *ngIf="0 < uploadedFiles.length" class="m-top">
+            <span><b>{{ 'uploadPopup.uploadedFiles' | translate }}</b></span>
+            <div *ngFor="let fi of uploadedFiles">
+                <mat-icon class="icon-success-small">check_circle</mat-icon>
+                {{ (30 < fi.length) ? (fi.toString() | slice: 0 : 30) + '...' : fi }}
+            </div>
+        </div>
+
+        <div class="progress">
+            <mat-progress-bar
+                class="progress-bar"
+                mode="determinate"
+                [value]="uploadProgress"
+                *ngIf="uploadProgress"
+                >
+            </mat-progress-bar>
+            <mat-icon
+                class="cancel-upload"
+                (click)="cancelUpload()"
+                *ngIf="uploadProgress"
+            >
+                delete_forever
+            </mat-icon>
+        </div>
+
+        </ng-template>
+
+</div>

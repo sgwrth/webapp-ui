@@ -1,0 +1,68 @@
+<div class="container">
+
+  <span style="vertical-align: middle;">
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <button
+          mat-menu-item
+          (click)="updateRoute('/welcome')"
+          routerLink="/welcome"
+      >
+        {{ 'nav.welcome' | translate }}
+      </button>
+      <button
+          mat-menu-item
+          (click)="updateRoute('/employees')"
+          routerLink="/employees"
+      >
+        {{ 'nav.employees' | translate }}
+      </button>
+      <button
+          mat-menu-item
+          (click)="updateRoute('/upload')"
+          routerLink="/upload"
+      >
+        {{ 'nav.upload' | translate }}
+      </button>
+      <button
+          mat-menu-item
+          (click)="updateRoute('/user-profile')"
+          routerLink="/user-profile"
+      >
+        {{ 'nav.userProfile' | translate }}
+    </button>
+    </mat-menu>
+  </span>
+
+  <span *ngIf="('/employees' === routeForNav)" style="vertical-align: middle;">
+    <button mat-icon-button (click)="refreshEmployeeList()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </span>
+
+  <span style="vertical-align: middle;">
+    <button mat-icon-button [matMenuTriggerFor]="langMenu">
+      <mat-icon>languages</mat-icon>
+    </button>
+    <mat-menu #langMenu="matMenu">
+      <button mat-menu-item (click)="selectTranslation('de')">Deutsch</button>
+      <button mat-menu-item (click)="selectTranslation('en')">English</button>
+    </mat-menu>
+  </span>
+  <span style="vertical-align: middle; color: #707070">
+    [{{ 'nav.lang' | translate }}]
+  </span>
+
+  <span style="float: right">
+    <img
+        [src]="image"
+        height="48"
+        routerLink="/user-profile"
+        (click)="updateRoute('/user-profile')"
+    />
+  </span>
+
+</div>
+

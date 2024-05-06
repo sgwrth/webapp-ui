@@ -1,0 +1,21 @@
+<div>
+    <h2>{{ 'userProfile.header' | translate }}</h2>
+</div>
+
+<div>
+    <img [src]="profilePic" width="128" (click)="openProfilePic()" />
+</div>
+
+<div>
+    <h3>{{ 'userProfile.data' | translate }}</h3>
+    <table>
+        <tr>
+            <td>{{ 'userProfile.accountName' | translate }}</td>
+            <td class="td-padded">{{ user.accountname}}</td>
+        </tr>
+        <tr>
+            <td>{{ 'userProfile.email' | translate }}</td>
+            <td class="td-padded">{{ user.email}}</td>
+        </tr>
+    </table>
+</div>

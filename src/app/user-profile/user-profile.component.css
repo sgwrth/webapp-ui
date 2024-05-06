@@ -1,0 +1,10 @@
+.td-padded {
+    padding: 0.0rem 0.0rem 0.0rem 1.0rem;
+    margin: 0.0rem;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 0.0rem;
+    padding: 0.0rem;
+}
